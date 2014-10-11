@@ -1,7 +1,9 @@
-##after downloading the file ,i opened the file and i selected only the data refered to the two days:1/2/2007 and 2/2/2007.the file "household_power_consumption_2007" only contains the selected data.
-household_power_consumption_2007 <- read.csv("~/coursera_analisis/household_power_consumption_2007.txt")
-View(household_power_consumption_2007)
-gap <- as.numeric(household_power_consumption_2007$Global_active_power)
+library(data.table) 
+data <- fread("./household_power_consumption.txt", header=TRUE, na.strings="?", nrows=2075259)
+selected_data <- data[data$Date=="1/2/2007" | data$Date=="2/2/2007"]
+selected_data[,datetime:=paste(Date, Time, sep = " ")]
+day <- strptime(selected_data$datetime, format = "%d/%m/%Y %H:%M:%S")
+gap <- as.numeric(selected_data$Global_active_power)
 png(file="./plot1.png", width=480, height=480)
 hist(gap, col="red", breaks=12, main="Global Active Power", xlab="Global Active Power (kilowatts)")
 dev.off()
