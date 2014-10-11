@@ -1,3 +1,4 @@
+##after downloading the file ,i opened the file and i selected only the data refered to the two days:1/2/2007 and 2/2/2007.the file "household_power_consumption_2007" only contains the selected data.
 household_power_consumption_2007 <- read.csv("~/coursera_analisis/household_power_consumption_2007.txt")
 View(household_power_consumption_2007)
 gap <- as.numeric(household_power_consumption_2007$Global_active_power)
