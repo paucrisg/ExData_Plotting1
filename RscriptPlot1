@@ -1,0 +1,6 @@
+household_power_consumption_2007 <- read.csv("~/coursera_analisis/household_power_consumption_2007.txt")
+View(household_power_consumption_2007)
+gap <- as.numeric(household_power_consumption_2007$Global_active_power)
+png(file="./plot1.png", width=480, height=480)
+hist(gap, col="red", breaks=12, main="Global Active Power", xlab="Global Active Power (kilowatts)")
+dev.off()
