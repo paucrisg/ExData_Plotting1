@@ -1,0 +1,9 @@
+library(data.table) 
+data <- fread("./household_power_consumption.txt", header=TRUE, na.strings="?", nrows=2075259)
+selected_data <- data[data$Date=="1/2/2007" | data$Date=="2/2/2007"]
+gap <- as.numeric(selected_data$Global_active_power)
+selected_data[,datetime:=paste(Date, Time, sep = " ")]
+day <- strptime(selected_data$datetime, format = "%d/%m/%Y %H:%M:%S")
+png(file="./plot2.png", width=480, height=480)
+plot(day, gap, type = "l", main=NULL, xlab=NA, ylab ="Global Active Power (kilowatts)")
+dev.off()
